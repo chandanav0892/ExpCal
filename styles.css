@@ -1,0 +1,818 @@
+/* Custom CSS for Experience Calculator with Bootstrap */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-gradient: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    --warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --info-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+body {
+    background: var(--primary-gradient);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styling */
+header h1 {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Card Enhancements */
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.bg-gradient-primary {
+    background: var(--primary-gradient) !important;
+}
+
+.bg-gradient-success {
+    background: var(--success-gradient) !important;
+}
+
+.bg-gradient-info {
+    background: var(--info-gradient) !important;
+}
+
+/* Summary card specific styling */
+.bg-gradient-success + .card-body {
+    background: linear-gradient(135deg, rgba(72, 187, 120, 0.05), rgba(56, 161, 105, 0.05));
+}
+
+/* Mode Selection Styling */
+.mode-selection .btn-group .btn {
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.mode-selection .btn-check:checked + .btn {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.mode-selection .alert {
+    border: none;
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3b82f6;
+}
+
+.active-desc {
+    display: inline !important;
+}
+
+#quickModeDesc:not(.active-desc),
+#detailedModeDesc:not(.active-desc) {
+    display: none !important;
+}
+
+/* Form Enhancements */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    transform: translateY(-1px);
+}
+
+.input-group-text {
+    border: 2px solid #e2e8f0;
+    border-right: none;
+    background: #f8fafc;
+    color: #667eea;
+}
+
+.form-control:focus + .input-group-text,
+.input-group-text + .form-control:focus {
+    border-color: #667eea;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    background: var(--primary-gradient);
+    border: none;
+}
+
+/* Experience Items */
+.experience-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.experience-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.experience-item.current-job {
+    background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 161, 105, 0.1));
+    border-left-color: #48bb78;
+}
+
+.experience-item.current-job::before {
+    content: "🟢 Current";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #48bb78;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.experience-item.quick-mode {
+    border-left-color: #f59e0b;
+}
+
+.experience-item.detailed-mode {
+    border-left-color: #3b82f6;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-right: 45px; /* Space for delete button */
+}
+
+.experience-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.experience-company {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.experience-dates {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.experience-duration {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.delete-btn:hover {
+    background: #c53030;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+}
+
+/* Summary Statistics */
+.summary-stat {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: #2d3748;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.summary-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #2d3748;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin: 0;
+    font-weight: 600;
+}
+
+.stat-exact {
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    margin-top: 5px;
+    padding: 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    color: #2d3748;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Individual stat type styling */
+.summary-stat:nth-child(1) .stat-icon {
+    color: #e53e3e; /* Red for years */
+}
+
+.summary-stat:nth-child(2) .stat-icon {
+    color: #3182ce; /* Blue for months */
+}
+
+.summary-stat:nth-child(3) .stat-icon {
+    color: #38a169; /* Green for days */
+}
+
+.summary-stat:nth-child(4) .stat-icon {
+    color: #d69e2e; /* Orange for exact experience */
+}
+
+.summary-stat:nth-child(1) .stat-number {
+    color: #e53e3e;
+}
+
+.summary-stat:nth-child(2) .stat-number {
+    color: #3182ce;
+}
+
+.summary-stat:nth-child(3) .stat-number {
+    color: #38a169;
+}
+
+.summary-stat:nth-child(4) .stat-exact {
+    background: rgba(214, 158, 46, 0.1);
+    border-color: rgba(214, 158, 46, 0.2);
+    color: #744210;
+}
+
+/* Message Styling */
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    min-width: 300px;
+}
+
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    min-width: 300px;
+}
+
+/* Mode-specific icons */
+.quick-mode::after {
+    content: "⚡";
+    position: absolute;
+    top: 15px;
+    right: 55px;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.detailed-mode::after {
+    content: "📋";
+    position: absolute;
+    top: 15px;
+    right: 55px;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.experience-item.new {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Animation for stat updates */
+.stat-number.updated {
+    animation: countUp 0.6s ease-out;
+}
+
+.stat-exact.updated {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .delete-btn {
+        position: static;
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+    
+    .quick-mode::after,
+    .detailed-mode::after {
+        display: none;
+    }
+    
+    .summary-stat {
+        padding: 15px 10px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-exact {
+        font-size: 0.9rem;
+    }
+}
+
+/* Flatpickr customization */
+.flatpickr-calendar {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: none;
+}
+
+.flatpickr-day.selected {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.flatpickr-day.selected:hover {
+    background: #5a67d8;
+    border-color: #5a67d8;
+}
+
+.flatpickr-months .flatpickr-month {
+    background: #667eea;
+    color: white;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    background: #667eea;
+}
+
+/* Utility buttons styling */
+.utility-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.utility-buttons .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.utility-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Remove old mode selection styles - now handled by Bootstrap */
+
+/* Form Enhancements */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.date-inputs {
+    display: grid;
+    gap: 20px;
+}
+
+@media (min-width: 480px) {
+    .date-inputs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.checkbox-wrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.checkbox-wrapper label {
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.experiences-container {
+    min-height: 200px;
+}
+
+.no-experience {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+.experience-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.experience-item:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    transform: translateX(5px);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.experience-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2d3748;
+}
+
+.experience-company {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.experience-dates {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.experience-duration {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.delete-btn {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.delete-btn:hover {
+    background: #c53030;
+    transform: scale(1.1);
+}
+
+.summary-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 30px;
+    color: white;
+    text-align: center;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.summary-item.detailed {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0 10px;
+    margin-top: 20px;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    border-bottom: none;
+}
+
+.summary-item .label {
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.summary-item .value {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.summary-item.detailed .value {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    opacity: 0.8;
+}
+
+/* Animation for new experience items */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.experience-item.new {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Success message */
+.success-message {
+    background: #48bb78;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Error message */
+.error-message {
+    background: #e53e3e;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .calculator-section,
+    .experiences-list,
+    .total-experience {
+        padding: 20px;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .delete-btn {
+        position: static;
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading .btn-primary {
+    background: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* Current job indicator */
+.current-job {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+    border-color: #48bb78 !important;
+}
+
+.current-job .experience-duration {
+    background: #38a169;
+}
+
+.current-job::before {
+    content: "🟢 Current";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #48bb78;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Mode-specific styling */
+.quick-mode {
+    border-left: 4px solid #f59e0b;
+}
+
+.quick-mode .experience-company {
+    color: #f59e0b;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.detailed-mode {
+    border-left: 4px solid #667eea;
+}
+
+.quick-mode::after {
+    content: "⚡";
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.detailed-mode::after {
+    content: "📋";
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
